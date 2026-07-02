@@ -1,168 +1,171 @@
 # Proyek Akhir Pemrograman Berbasis Objek 1
 
-Proyek ini adalah contoh sederhana aplikasi pengolahan data mahasiswa menggunakan Java sebagai tugas akhir dari mata kuliah pemrograman berbasis objek 1.
+Proyek ini adalah contoh sederhana aplikasi sistem manajemen crew dan panitia konser menggunakan Java sebagai tugas akhir dari mata kuliah pemrograman berbasis objek 1.
 
 ## Deskripsi
 
-Aplikasi ini menerima input berupa nama dan NPM mahasiswa, dan memberikan output berupa informasi detail dari NPM tersebut seperti tahun masuk, fakultas, program studi, dan nomor registrasi.
+Aplikasi ini menerima input berupa data diri panitia seperti nama, ID, divisi, dan daftar tugas (jobdesk) yang harus dikerjakan, lalu memberikan output berupa rincian penugasan dari masing-masing panitia atau crew konser secara terstruktur.
 
-Aplikasi ini mengimplementasikan beberapa konsep penting dalam pemrograman berorientasi objek (OOP) seperti Class, Object, Atribut, Method Constructor, Method Mutator, Method Accessor, Encapsulation, Inheritance, Overloading, Overriding, Seleksi, Perulangan, IO Sederhana, Array, dan Error Handling.
+Aplikasi ini mengimplementasikan beberapa konsep penting dalam pemrograman berorientasi objek (OOP) seperti Class, Object, Atribut, Method Constructor, Method Mutator, Method Accessor, Encapsulation, Inheritance, Overloading/Overriding, Seleksi, Perulangan, IO Sederhana, Array, dan Error Handling.
 
 ## Penjelasan Kode
 
 Berikut adalah bagian kode yang relevan dengan konsep OOP yang dijelaskan:
 
-1. **Class** adalah template atau blueprint dari object. Pada kode ini, `Mahasiswa`, `MahasiswaDetail`, dan `MahasiswaBeraksi` adalah contoh dari class.
+1. **Class** adalah template atau blueprint dari object. Pada kode ini, `Person`, `ConcertCommittee`, dan `Main` adalah contoh dari class.
 
-```bash
-public class Mahasiswa {
-    ...
+```java
+public class Person {
+    // ...
 }
 
-public class MahasiswaDetail extends Mahasiswa {
-    ...
+public class ConcertCommittee extends Person {
+    // ...
 }
 
-public class MahasiswaBeraksi {
-    ...
-}
-```
-
-2. **Object** adalah instance dari class. Pada kode ini, `mhs[i] = new MahasiswaDetail(nama, npm);` adalah contoh pembuatan object.
-
-```bash
-mhs[i] = new MahasiswaDetail(nama, npm);
-```
-
-3. **Atribut** adalah variabel yang ada dalam class. Pada kode ini, `nama` dan `npm` adalah contoh atribut.
-
-```bash
-String nama;
-String npm;
-```
-
-4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `Mahasiswa` dan `MahasiswaDetail`.
-
-```bash
-public Mahasiswa(String nama, String npm) {
-    this.nama = nama;
-    this.npm = npm;
-}
-
-public MahasiswaDetail(String nama, String npm) {
-    super(nama, npm);
+public class Main {
+    // ...
 }
 ```
 
-5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setNama` dan `setNpm` adalah contoh method mutator.
+2. **Object** adalah instance dari class. Pada kode ini, `newCommittee` adalah contoh pembuatan object dari class `ConcertCommittee`.
 
-```bash
-public void setNama(String nama) {
-    this.nama = nama;
+```java
+ConcertCommittee newCommittee = new ConcertCommittee(name, id, division, jobdeskList);
+```
+
+3. **Atribut** adalah variabel yang ada dalam class. Pada kode ini, `name`, `id`, dan `division` adalah contoh atribut.
+
+```java
+private String name;
+private String id;
+private String division;
+```
+
+4. **Constructor** adalah method yang pertama kali dijalankan pada saat pembuatan object. Pada kode ini, constructor ada di dalam class `Person` dan `ConcertCommittee`.
+
+```java
+public Person(String name, String id, String role) {
+    this.name = name;
+    this.id = id;
+    this.role = role;
 }
 
-public void setNpm(String npm) {
-    this.npm = npm;
+public ConcertCommittee(String name, String id, String division, String[] jobdesk) {
+    super(name, id, "Committee");
+    this.division = division;
+    this.jobdeskList = jobdesk;
 }
 ```
 
-6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getNama`, `getNpm`, `getTahunMasuk`, `getFakultas`, `getProdi`, dan `getNoRegistrasi` adalah contoh method accessor.
+5. **Mutator** atau setter digunakan untuk mengubah nilai dari suatu atribut. Pada kode ini, `setName` dan `setId` adalah contoh method mutator.
 
-```bash
-public String getNama() {
-    return nama;
+```java
+public void setName(String name) {
+    this.name = name;
 }
 
-public String getNpm() {
-    return npm;
-}
-```
-
-7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini, atribut `nama` dan `npm` dienkapsulasi dan hanya bisa diakses melalui method getter dan setter.
-
-```bash
-private String nama;
-private String npm;
-```
-
-8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `MahasiswaDetail` mewarisi `Mahasiswa` dengan sintaks `extends`.
-
-```bash
-public class MahasiswaDetail extends Mahasiswa {
-    ...
+public void setId(String id) {
+    this.id = id;
 }
 ```
 
-9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Ini memungkinkan metode-metode dengan nama yang sama untuk berperilaku berbeda tergantung pada tipe objek yang mereka manipulasi, polymorphism bisa berbentuk Overloading ataupun Overriding. Pada kode ini, method `displayInfo(String)` di `Mahasiswa` merupakan overloading method `displayInfo` dan `displayInfo` di `MahasiswaDetail` merupakan override dari method `displayInfo` di `Mahasiswa`.
+6. **Accessor** atau getter digunakan untuk mengambil nilai dari suatu atribut. Pada kode ini, `getName` dan `getId` adalah contoh method accessor.
 
-```bash
-public String displayInfo(String kelas) {
-    return displayInfo() + "\nKelas: " + kelas;
+```java
+public String getName() {
+    return name;
 }
 
+public String getId() {
+    return id;
+}
+```
+
+7. **Encapsulation** adalah konsep menyembunyikan data dengan membuat atribut menjadi private dan hanya bisa diakses melalui method. Pada kode ini, atribut `name`, `id`, dan `role` dienkapsulasi sehingga terlindungi dari modifikasi luar secara langsung.
+
+```java
+private String name;
+private String id;
+private String role;
+```
+
+8. **Inheritance** adalah konsep di mana sebuah class bisa mewarisi property dan method dari class lain. Pada kode ini, `ConcertCommittee` mewarisi sifat dari `Person` dengan sintaks `extends`.
+
+```java
+public class ConcertCommittee extends Person {
+    // ...
+}
+```
+
+9. **Polymorphism** adalah konsep di mana sebuah nama dapat digunakan untuk merujuk ke beberapa tipe atau bentuk objek berbeda. Pada kode ini, method `showTask()` di `ConcertCommittee` merupakan bentuk dari *Method Overriding* yang menimpa method `showTask()` milik superclass `Person`.
+
+```java
+// Inside Person class
+public void showTask() {
+    System.out.println(name + " is a general concert staff.");
+}
+
+// Inside ConcertCommittee class
 @Override
-public String displayInfo() {
-    ...
+public void showTask() {
+    System.out.println("=== Concert Committee Task ===");
+    // ...
 }
 ```
 
-10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if else` dalam method `getFakultas` dan seleksi `switch` dalam method `getProdi`.
+10. **Seleksi** adalah statement kontrol yang digunakan untuk membuat keputusan berdasarkan kondisi. Pada kode ini, digunakan seleksi `if-else` dalam method mutator untuk memvalidasi apakah peran yang dimasukkan sesuai ketentuan.
 
-```bash
-public String getFakultas() {
-    if(getNpm().substring(2, 4).equals("10")){
-        return "Teknologi Informasi";
+```java
+public void setRole(String role) {
+    if (role.equalsIgnoreCase("Committee") || role.equalsIgnoreCase("Crew")) {
+        this.role = role;
     } else {
-        return "Fakultas lain";
-    }
-
-    //return getNpm().substring(2, 4).equals("10") ? "Teknologi Informasi" : "Fakultas lain";
-}
-
-public String getProdi() {
-    switch(getNpm().substring(4, 6)) {
-        case "01":
-            return "Teknik Informatika";
-        case "02":
-            return "Sistem Informasi";
-        default:
-            return "Prodi lain";
+        this.role = "General Staff";
     }
 }
 ```
 
-11. **Perulangan** adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop `for` untuk meminta input dan menampilkan data.
+11. **Perulangan** adalah statement kontrol yang digunakan untuk menjalankan blok kode berulang kali. Pada kode ini, digunakan loop `for` biasa untuk meminta input data array, dan `for-each` loop untuk menampilkannya.
 
-```bash
-for (int i = 0; i < mahasiswas.length; i++) {
-    ...
+```java
+for (int i = 0; i < jobCount; i++) {
+    System.out.print("Jobdesk " + (i + 1) + ": ");
+    jobdeskList[i] = input.nextLine();
+}
+
+for (String task : jobdeskList) {
+    System.out.println("- " + task);
 }
 ```
 
-12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima input dan method `System.out.println` untuk menampilkan output.
+12. **Input Output Sederhana** digunakan untuk menerima input dari user dan menampilkan output ke user. Pada kode ini, digunakan class `Scanner` untuk menerima data masukan lewat terminal dan method `System.out.println` untuk mencetak informasi ke layar.
 
-```bash
-Scanner scanner = new Scanner(System.in);
-System.out.print("Masukkan Nama Mahasiswa ke-" + (i + 1) + ": ");
-String nama = scanner.nextLine();
+```java
+Scanner input = new Scanner(System.in);
+System.out.print("Enter Committee Name: ");
+String name = input.nextLine();
 
-System.out.println("\nData Mahasiswa:");
-System.out.println(mahasiswa.displayInfo());
+System.out.println("\nProcessing Data...");
 ```
 
-13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Pada kode ini, `MahasiswaDetail[] mahasiswas = new MahasiswaDetail[2];` adalah contoh penggunaan array.
+13. **Array** adalah struktur data yang digunakan untuk menyimpan beberapa nilai bertipe sama dalam satu variabel. Pada kode ini, array `jobdeskList` digunakan untuk menampung rentetan string tugas.
 
-```bash
-MahasiswaDetail[] mahasiswas = new MahasiswaDetail[2];
+```java
+String[] jobdeskList = new String[jobCount];
 ```
 
-14. **Error Handling** digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan `try catch` untuk menangani error.
+14. **Error Handling** digunakan untuk menangani error yang mungkin terjadi saat runtime. Pada kode ini, digunakan blok `try-catch-finally` untuk memastikan program tidak crash (misalnya terkena Input Mismatch Exception) ketika pengguna tidak sengaja memasukkan huruf saat diminta memasukkan angka.
 
-```bash
+```java
 try {
-    // code that might throw an exception
+    // Code block for numeric input processing and instantiation
+    int jobCount = input.nextInt();
 } catch (Exception e) {
-    System.out.println("Error: " + e.getMessage());
+    System.out.println("\n[ERROR] Input data error! Ensure jobdesk count is a number.");
+} finally {
+    input.close();
+    System.out.println("\n=== Program Finished ===");
 }
 ```
 
@@ -188,5 +191,5 @@ try {
 
 ## Pembuat
 
-Nama: Nadia Iqlimah
+Nama: Nadia Iqlimah  
 NPM: 2410010215
